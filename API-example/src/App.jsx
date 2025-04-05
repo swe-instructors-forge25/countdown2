@@ -9,6 +9,8 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   // useEffect requires an arrow function and an array of dependencies
+
+  // using an async function
   // useEffect(() => {
   //   const fetchQuestionData = async () => {
   //     try {
@@ -29,6 +31,7 @@ function App() {
   //   fetchQuestionData();
   // }, []);
 
+  // using promise chaining
   useEffect(() => {
     fetch(`https://opentdb.com/api.php?amount=10&type=multiple`)
       .then((response) => response.json())
