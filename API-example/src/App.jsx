@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Question from "./componenets/Question";
 
 function App() {
-  const [questionData, setQuestionData] = useState({});
+  const [questionData, setQuestionData] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -26,6 +26,7 @@ function App() {
   //     } catch (error) {
   //       setError(error);
   //       console.error("There was an error fetching the data", error);
+  //       setIsLoading(false);
   //     }
   //   };
   //   fetchQuestionData();
@@ -37,20 +38,21 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         if (data.response_code === 0) {
-          console.log(data);
           setQuestionData(data.results);
+          setIsLoading(false);
         }
       })
       .catch((error) => {
         setError(error);
         console.error("There was an error fetching the data", error);
+        setIsLoading(false);
       });
   }, []);
 
   if (isLoading) {
     return (
       <>
-        <p>Page is Loading.. </p>
+        <p>Loading</p>
       </>
     );
   }
